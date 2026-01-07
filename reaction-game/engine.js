@@ -1,25 +1,35 @@
 export class ReactionGame {
   constructor() {
-    this.phase = "idle";     // current phase of the game
-    this.readyTime = null;      // when green appeared
-    this.reactionTime = null;     // reaction time result
+    this.phase = "idle"; // idle | waiting | ready | reacted | cheated
+    this.readyTime = null;
+    this.reactionTime = null;
   }
 
   start() {
-    if(this.phase !== "idle") return
+    if (this.phase !== "idle") return;
 
-    this.readyTime = null
-    this.reactionTime = null 
-
-    this.phase = "waiting"
+    this.readyTime = null;
+    this.reactionTime = null;
+    this.phase = "waiting";
   }
 
   markReady(time) {
-    // logic will go here later
+    if (this.phase !== "waiting") return;
+
+    this.readyTime = time;
+    this.phase = "ready";
   }
 
   click(time) {
-    // logic will go here later
+    if (this.phase === "waiting") {
+      this.phase = "cheated";
+      return;
+    }
+
+    if (this.phase === "ready") {
+      this.reactionTime = time - this.readyTime;
+      this.phase = "reacted";
+      return;
+    }
   }
 }
- 
