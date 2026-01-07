@@ -1,0 +1,33 @@
+body {
+    font-family: Arial;
+    text-align: center;
+}
+
+#board {
+    display: grid;
+    grid-template-columns: repeat(4, 80px);
+    gap: 10px;
+    justify-content: center;
+    margin: 20px;
+}
+
+.card {
+    width: 80px;
+    height: 80px;
+    background: #444;
+    color: white;
+    font-size: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.card.flipped {
+    background: #eee;
+    color: black;
+}
+
+.card.matched {
+    background: lightgreen;
+}
